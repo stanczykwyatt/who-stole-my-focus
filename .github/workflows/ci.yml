@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run tests
+        run: swift test
+
+      - name: Build the app
+        run: scripts/build-app.sh
+
+      - name: Check the app has no entitlements beyond the sandbox
+        run: |
+          entitlements="$(codesign -d --entitlements - --xml "build/Who Stole My Focus.app" 2>/dev/null)"
+          if ! grep -q "com.apple.security.app-sandbox" <<< "$entitlements"; then
+            echo "::error::Who Stole My Focus must run in the App Sandbox."
+            exit 1
+          fi
+          others="$(grep -o "com\.apple\.[a-z.-]*" <<< "$entitlements" | grep -v "^com.apple.security.app-sandbox$" || true)"
+          if [ -n "$others" ]; then
+            echo "$others"
+            echo "::error::Who Stole My Focus must have no entitlements besides the App Sandbox."
+            exit 1
+          fi
+          echo "Sandboxed, with no other entitlements."
+
+      - name: Check the app never asks for input or screen access
+        run: |
+          pattern='CGEvent(Tap|PostToPid)|tapCreate|AXIsProcessTrusted|AXUIElement|CGWindowListCreateImage|SCShareableContent|NSEvent\.addGlobalMonitor|URLSession|NWConnection'
+          if grep -rnE "$pattern" Sources; then
+            echo "::error::Who Stole My Focus must not read keystrokes, other apps or the screen, or use the network."
+            exit 1
+          fi
+          echo "No event taps, Accessibility, screen capture or networking."

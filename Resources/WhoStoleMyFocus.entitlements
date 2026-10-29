@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+	Everything Who Stole My Focus is allowed to do. The App Sandbox blocks anything not listed here.
+	Nothing else is listed: no network entitlement, so it cannot connect to the internet at all; no
+	file entitlements, so it cannot open any of your files; no Apple Events, so it cannot control
+	other apps. It only listens for apps coming to the front and reads how long ago you last
+	clicked or typed, which macOS allows any app to do.
+-->
+<plist version="1.0">
+<dict>
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+</dict>
+</plist>

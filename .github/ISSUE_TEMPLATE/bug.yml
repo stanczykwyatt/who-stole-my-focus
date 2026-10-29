@@ -1,0 +1,30 @@
+name: Bug report
+description: Something isn't working, or a switch was judged wrong.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What were you doing, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Event details
+      description: For a switch judged wrong, open the log, choose Everything, right-click the row and choose Copy Details, then paste it here. Leave out anything you'd rather not share.
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Who Stole My Focus version
+      description: Menu bar icon → About Who Stole My Focus.
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+    validations:
+      required: true
