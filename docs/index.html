@@ -54,38 +54,53 @@
   }
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Why does my Mac keep switching windows by itself?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Usually an app or background helper brings itself to the front: an updater, a sync client, a meeting app, or a password or permission prompt. Who Stole My Focus logs every one, so the next time it happens you can see exactly which app it was." }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I find out which app is stealing focus on my Mac?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Install Who Stole My Focus and leave it running. When an app takes focus without you switching to it, the menu bar icon changes and its menu names the app, what it took focus from, and when." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is SecurityAgent, and why does it take focus?",
-        "acceptedAnswer": { "@type": "Answer", "text": "SecurityAgent is the part of macOS that asks for your password to approve a change, like an app installing a helper. Usually another app triggered it, and Who Stole My Focus shows what was in front just before." }
-      },
-      {
-        "@type": "Question",
-        "name": "Will it blame me for switching apps?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. Clicks, Command-Tab and other shortcuts, launchers like Spotlight, swipes between Spaces, and apps you just opened all count as yours. When it can't tell, it says so instead of calling it a steal." }
-      },
-      {
-        "@type": "Question",
-        "name": "Does it need Accessibility or Input Monitoring permission?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. It needs no permissions at all. It only knows how long ago you last clicked or typed, never which key or what you typed, and it has no internet access." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does my Mac keep switching windows by itself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually an app or background helper brings itself to the front: an updater, a sync client, a meeting app, a password or permission prompt. Who Stole My Focus logs every one, so the next time it happens you can see exactly which app it was."
       }
-    ]
-  }
-  </script>
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find out which app is stealing focus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Install Who Stole My Focus and leave it running. When an app takes focus without you switching to it, the menu bar icon changes and its menu names the app, what it took focus from and when. Top Offenders shows which apps do it most."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is SecurityAgent, and why does it take focus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SecurityAgent is the part of macOS that asks for your password to approve a change, like an app installing a helper. Usually another app triggered it, and the log shows what was in front just before."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will it blame me for switching apps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Clicks, ⌘Tab and other shortcuts, launchers like Spotlight, Raycast and Alfred, swipes between Spaces and apps you just opened all count as yours. When it can't tell, it says so instead of calling it a steal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it need any permissions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "None. It only knows how long ago you last clicked or typed, never which key or what you typed, and it never reads your windows. It runs in the macOS App Sandbox with no internet access, and the code is open source."
+      }
+    }
+  ]
+}
+</script>
 
   <style>
     :root {
